@@ -42,15 +42,15 @@ func transformResponse(resp betaseriesResponse) []Episode {
 }
 
 //Episodes retrieve your unseen episode from betaseries
-func Episodes(token string) []Episode {
+func (api BetaAPI) Episodes() []Episode {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", "https://api.betaseries.com/episodes/list", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 	req.Header.Add("X-BetaSeries-Version", "2.4")
-	req.Header.Add("X-BetaSeries-Key", betaseriesKey)
-	req.Header.Add("X-BetaSeries-Token", token)
+	req.Header.Add("X-BetaSeries-Key", api.Key)
+	req.Header.Add("X-BetaSeries-Token", api.Token)
 
 	resp, err := client.Do(req)
 	if err != nil {
