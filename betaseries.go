@@ -52,7 +52,7 @@ func (api *BetaAPI) Auth(login, password string) {
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatalf("error when reding the response from betaseries : %s", err)
+		log.Fatalf("error when reading the response from betaseries : %s", err)
 	}
 	var betaResp betaseriesAuthResp
 	err = json.Unmarshal(body, &betaResp)
